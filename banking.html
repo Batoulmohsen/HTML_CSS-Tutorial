@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Bank</title>
+</head>
+    <body style="background-color: lightblue;"></body>
+<body style="text-align:center; font-family:sans-serif; margin-top:50px;">
+  <h2>💸 Mini Bank</h2>
+  <p id="balance">Balance: ₹1000</p>
+  <input id="amount" type="number" placeholder="Amount"><br><br>
+  <button onclick="balance += get(), show()">Deposit</button>
+  <button onclick="withdraw()">Withdraw</button>
+
+  <script>
+    let balance = 1000;
+
+    function get() {
+      return Number(document.getElementById('amount').value);
+    }
+
+    function show() {
+      document.getElementById('balance').innerText = "Balance: ₹" + balance;
+      document.getElementById('amount').value = '';
+    }
+
+    function withdraw() {
+      let amt = get();
+      if (amt > balance) {
+        alert("Not enough money!");
+      } else {
+        balance -= amt;
+        show();
+      }
+    }
+  </script>
+</body>
+</html>
