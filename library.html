@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Library Management</h2>
+<input id="search" placeholder="Search..." onkeyup="searchBooks()">
+
+<p>
+<input id="title" placeholder="Title">
+<input id="author" placeholder="Author">
+<button onclick="addBook()">Add</button>
+</p>
+<ul id="bookList"></ul>
+
+<script>
+let books = ["The Great Gatsby - F. Scott Fitzgerald", "1984 - George Orwell"];
+
+function displayBooks(list = books) {
+    document.getElementById("bookList").innerHTML = list.map((book, i) =>
+        `<li>${book} <button onclick="removeBook(${i})">Remove</button></li>`
+    ).join("");
+}
+
+function addBook() {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    if(title && author) books.push(`${title} - ${author}`);
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    displayBooks();
+}
+
+function removeBook(index) {
+    books.splice(index, 1);
+    displayBooks();
+}
+
+function searchBooks() {
+    let q = document.getElementById("search").value.toLowerCase();
+    let filtered = books.filter(b => b.toLowerCase().includes(q));
+    displayBooks(filtered);
+}
+
+displayBooks();
+</script>
+
+</body>
+</html>
